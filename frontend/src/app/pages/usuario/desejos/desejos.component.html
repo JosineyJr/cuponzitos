@@ -143,6 +143,7 @@
                 type="radio"
                 name="tamanhoFome"
                 id="{{tamanho.value}}"
+                [checked]="tamanho.checked"
                 [value]="tamanho.value"
                 (change) = "onRadioChangeTamanho($event)"
               />
@@ -160,6 +161,7 @@
                 type="radio"
                 name="precos"
                 id="{{preco.value}}"
+                [checked]="preco.checked"
                 [value]="preco.value"
                 (change) = "onRadioChangePreco($event)"
               />
@@ -177,9 +179,9 @@
                 <ion-label>{{categoria.description}}</ion-label>
                 <ion-checkbox
                   slot="start"
-                  [value]="categoria.value"
-                  (click)="onCheckChange($event)"
-                  (change)="onCheckChange($event)"
+                  [value]="categoria.description"
+                  [checked]="categoria.checked"
+                  (click)="onCheckChangeCategoria($event)"
                 ></ion-checkbox>
               </ion-item>
             </ion-col>

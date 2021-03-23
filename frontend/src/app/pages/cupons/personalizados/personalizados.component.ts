@@ -4,6 +4,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { DragScrollComponent } from 'ngx-drag-scroll';
 import { Title } from '@angular/platform-browser';
 import { NavController, ToastController } from '@ionic/angular';
+import { LoginService } from 'src/app/service/login.service';
+import { ApiBKService } from 'src/app/service/api-bk.service';
 
 @Component({
   selector: 'app-personalizados',
@@ -21,6 +23,9 @@ export class PersonalizadosComponent implements OnInit {
   rightNavDisabled = false;
   index = 0;
   login;
+  usuario;
+  desejos = [];
+  filtro = [];
 
   @ViewChildren('nav', { read: DragScrollComponent })
   ds: DragScrollComponent;
@@ -28,16 +33,39 @@ export class PersonalizadosComponent implements OnInit {
   constructor(
     sanitizer: DomSanitizer,
     private toastController: ToastController,
-    private navController: NavController
+    private navController: NavController,
+    private loginService: LoginService,
+    private apiService: ApiBKService
   ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     this.login = JSON.parse(localStorage.getItem('loginBD'));
     if (!this.login) {
       this.navController.navigateBack('/cuponzitos');
       this.exibirMensagem('Usuário nao autenticado');
     } else {
       this.exibirMensagem('Usuário autenticado com sucesso!');
+      await this.loginService.getUsuario(this.login.username).then((user) => {
+        this.usuario = user;
+        console.log(user);
+        for (const categoria of this.usuario.desejos.caracteristicaProdutos) {
+          this.apiService
+            .getPromo(categoria.nomeCaracteristicaProduto)
+            .then((promo) => {
+              this.desejos.push(promo);
+              for (const promo in this.desejos) {
+                for (const cupom in this.desejos[promo].coupons) {
+                  if (
+                    parseFloat(this.desejos[promo].coupons[cupom].price) >
+                    this.usuario.desejos.valorMaximo
+                  ) {
+                    
+                  }
+                }
+              }
+            });
+        }
+      });
     }
   }
 

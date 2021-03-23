@@ -24,7 +24,7 @@ export class ApiBKService {
       .then((promo) => {
         this.promo = <Promos>promo['data'];
         for (const p in this.promo) {
-          if (this.promo[p].name === name) {
+          if (this.promo[p].name.toUpperCase() === name.toUpperCase()) {
             return this.promo[p];
           }
         }
