@@ -61,7 +61,7 @@ public class User {
   @Column(name = "active")
   private Boolean active;
 
-  @OneToOne
+  @OneToOne(cascade = {CascadeType.ALL})
   private Desejos desejos;
 
   @ManyToMany(cascade = CascadeType.MERGE)

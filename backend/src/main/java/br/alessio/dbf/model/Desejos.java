@@ -22,7 +22,7 @@ public class Desejos {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id_desejo")
-  private int idPerfil;
+  private Long idDesejo;
 
   @Column(name = "valor_maximo")
   private double valorMaximo;
@@ -30,11 +30,8 @@ public class Desejos {
   @Column(name = "tamanho_combo")
   private double tamanhoCombo;
 
-  @OneToOne
-  private User usuario;
-
   @ManyToMany(cascade = CascadeType.MERGE)
-  @JoinTable(name = "caracteristica_produto_perfil", joinColumns = @JoinColumn(name = "id_perfil"), inverseJoinColumns = @JoinColumn(name = "id_caracteristica_produto"))
+  @JoinTable(name = "caracteristica_produto_desejo", joinColumns = @JoinColumn(name = "id_desejo"), inverseJoinColumns = @JoinColumn(name = "id_caracteristica_produto"))
   private Set<CaracteristicaProduto> caracteristicaProdutos;
 
 }
