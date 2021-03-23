@@ -1,0 +1,71 @@
+<ion-content>
+  <div id="fundo">
+    <div id="icone">
+      <img src="../../../assets/icon/favicon.png" alt="" />
+    </div>
+    <div id="formularioLogin">
+      <form (ngSubmit)="onSubmit()" [formGroup]="formLogin">
+        <div class="input">
+          <ion-label id="labelEmail">Usuário:</ion-label>
+          <ion-input
+            type="text"
+            placeholder=""
+            id="inputEmail"
+            name="inputEmail"
+            formControlName="usuario"
+          ></ion-input>
+          <div
+            *ngIf="formLogin.get('usuario').invalid && (formLogin.get('usuario').dirty || formLogin.get('usuario').touched)"
+          >
+            <small
+              *ngIf="formLogin.get('usuario').errors?.required || formLogin.get('usuario').errors?.minlength"
+            >
+              <ion-text color="danger">
+                Usuário obrigatório com no mínimo 5 caracteres
+              </ion-text>
+            </small>
+          </div>
+        </div>
+        <div class="input">
+          <ion-label id="labelSenha">Senha:</ion-label>
+          <ion-input
+            type="password"
+            placeholder=""
+            id="inputSenha"
+            name="inputSenha"
+            formControlName="senha"
+          ></ion-input>
+
+          <p id="textEsqueceuSenha">esqueci minha senha</p>
+          <div
+            *ngIf="formLogin.get('senha').invalid && (formLogin.get('senha').dirty || formLogin.get('senha').touched)"
+          >
+            <small
+              *ngIf="formLogin.get('senha').errors?.required || formLogin.get('senha').errors?.minlength"
+            >
+              <ion-text color="danger">
+                Senha obrigatória com no mínimo 5 caracteres
+              </ion-text>
+            </small>
+          </div>
+        </div>
+        <div id="lembrarSenha">
+          <ion-checkbox id="inputLembrarSenha" formControlName="lembrarSenha"></ion-checkbox>
+          <ion-label id="labelLembrarSenha">LEMBRAR MINHA SENHA</ion-label>
+        </div>
+        <ion-button
+          type="submit"
+          id="btnEntrar"
+          expand="block"
+          fill="clear"
+          shape="round"
+          [disabled]="!formLogin.valid"
+        >
+          ENTRAR
+        </ion-button>
+        <div class="input" id="textCadastrese">ou <span [routerLink]="['/cadastrar']" routerLinkActive="router-link-active" >cadastre-se</span></div>
+        <div class="input" id="pularEtapa" [routerLink]="['/cuponzitos']" routerLinkActive="router-link-active">Pular esta etapa >></div>
+      </form>
+    </div>
+  </div>
+</ion-content>

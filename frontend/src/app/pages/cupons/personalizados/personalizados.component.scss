@@ -1,0 +1,390 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+#fundo {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: #f9f9f9;
+}
+
+#cabecalho {
+  position: fixed;
+  width: 100%;
+  height: 75px;
+
+  p {
+    margin-top: 17.5px;
+
+    text-align: center;
+    text-transform: capitalize;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 42px;
+    color: #ffffff;
+  }
+
+  background: #f91919;
+}
+
+#iconeMenu {
+  margin-top: 13px;
+
+  cursor: pointer;
+}
+
+#sideMenu {
+  position: fixed;
+  margin-top: 75px;
+  margin-left: -250px;
+  width: 250px;
+  height: 100%;
+  overflow: hidden;
+
+  background-color: #f9f9f9;
+
+  transition: all linear 0.5s;
+}
+
+#bemVindo {
+  margin-left: 60px;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+
+  color: #000000;
+
+  span {
+    color: #f91919;
+  }
+}
+
+#opcoesSideMenu {
+  margin-left: -40px;
+  list-style: none;
+}
+
+.item {
+  height: 35px;
+  border-top: #000000 1px solid;
+
+  cursor: pointer;
+  p {
+    margin-top: 7px;
+    margin-left: 10px;
+  }
+}
+
+.item:last-child {
+  border-bottom: #000000 1px solid;
+}
+
+.seta {
+  position: absolute;
+  right: 10px;
+  margin-top: 10px;
+}
+
+#iconeUsuario {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2%;
+  width: max-content;
+  height: max-content;
+
+  z-index: 100;
+
+  // background-color: #f91919;
+  border-radius: 75px;
+}
+
+#title {
+  width: 220px;
+  height: max-content;
+  margin-top: 95px;
+  margin-left: 30px;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 28px;
+
+  color: #000000;
+  // background-color: #ffffff;
+
+  p {
+    margin-left: 2%;
+    margin-top: -34px;
+  }
+  p:last-child {
+    margin-top: -20px;
+  }
+}
+
+#desejo{
+  margin-left: 175px;
+}
+
+.cupons {
+  width: 100%;
+  height: max-content;
+  // margin-left: 2%;
+  display: inline-flex;
+  margin-bottom: 20px;
+
+  background-color: #ebe8e8;
+}
+
+.cupom {
+  width: 160px;
+  height: 160px;
+  background-color: #ffffff;
+  margin: 5px;
+
+  .imgCupom {
+    // position: relative;
+    margin-left: 20px;
+    margin-top: 9px;
+    width: 120px;
+    height: 120px;
+
+    background: #f91919;
+  }
+}
+
+.verCupom {
+  width: 120px;
+  margin-left: 20px;
+
+  text-align: center;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 11px;
+  line-height: 13px;
+  text-transform: capitalize;
+
+  color: #ffffff;
+  background: #f58604;
+
+  #iconeCupom {
+    margin-top: 2px;
+    margin-right: 5px;
+  }
+}
+
+#setaEsquerda {
+  cursor: pointer;
+  margin-top: 80px;
+  margin-left: 10px;
+}
+
+#setaDireita {
+  cursor: pointer;
+  margin-top: 80px;
+  margin-right: 10px;
+}
+
+.demo-one {
+  width: 100%;
+  height: max-content;
+  background-color: #ebe8e8;
+}
+
+.demo-one img {
+  height: 260px;
+  width: 260px;
+}
+
+@media (max-width: 1000px) {
+  .demo-one {
+    height: max-content;
+  }
+}
+
+.demo-two {
+  height: 500px;
+}
+
+.demo-border {
+  padding: 10px 10px 10px 10px;
+  box-sizing: border-box;
+  border: 1px solid;
+  border-color: #cfcfcf;
+  margin-bottom: 20px;
+}
+
+.toggle-box {
+  width: 49%;
+  display: inline-block;
+}
+
+.toggle-box mat-slide-toggle {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.footer {
+  font-weight: 300;
+  font-size: 15px;
+  background-color: rgb(33, 33, 33);
+}
+
+.footer a {
+  background-color: transparent;
+  text-decoration: none;
+  cursor: auto;
+}
+
+.docs-api-properties-table {
+  border-collapse: collapse;
+  border-radius: 2px;
+  border-spacing: 0;
+  margin: 0 0 32px;
+  width: 100%;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.24), 0 0 2px rgba(0, 0, 0, 0.12);
+}
+
+.docs-api-properties-table p {
+  margin: 0;
+}
+
+.docs-api-properties-table th {
+  max-width: 100px;
+  padding: 13px 32px;
+  text-align: left;
+}
+
+.docs-api-properties-table td {
+  font-weight: 400;
+  padding: 8px 30px;
+  color: rgba(0, 0, 0, 0.54);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+#ajusteTecnico {
+  height: 150px;
+}
+
+#textMeusDesejos,
+#textCuponsExclusivos {
+  margin-left: 2%;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+
+  color: #000000;
+}
+
+#abas {
+  position: fixed;
+  width: 100%;
+  height: 50px;
+  background-color: #f91919;
+  bottom: 0;
+}
+
+#iconePerfilUsuario {
+  position: fixed;
+  left: 0;
+  margin-left: 15px;
+  margin-top: 10px;
+  p {
+    margin-left: -10px;
+    margin-top: -1px;
+  }
+}
+
+#iconeMeusDesejos {
+  position: fixed;
+  left: 0;
+  margin-left: 30%;
+  margin-top: 10px;
+  p {
+    margin-left: -20px;
+    margin-top: -1px;
+  }
+}
+
+#iconeAbaCupom,
+#textIconeAbaCupom {
+  position: fixed;
+  right: 0;
+  margin-right: 30%;
+  margin-top: 10px;
+  p {
+    right: -40px;
+    margin-top: 27px;
+  }
+}
+
+#iconeInicio {
+  position: fixed;
+  right: 0;
+  margin-right: 15px;
+  margin-top: 10px;
+  p {
+    margin-top: -1px;
+  }
+}
+
+.textIcone {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 10px;
+  line-height: 12px;
+
+  color: #ffffff;
+}
+
+// #textIconeAbaCupom{
+//   margin-right: 20% !important;
+// }
+.active {
+  path {
+    fill: #f58604;
+  }
+  p {
+    color: #f58604;
+  }
+}
+
+@media only screen and (max-width: 960px) {
+  .toggle-box {
+    width: 100%;
+    display: block;
+  }
+
+  .demo-content {
+    margin: 16px;
+  }
+}
+
+.content {
+  margin: 50px 70px;
+}
+
+@media screen and (min-width: 600px) and (max-width: 1279px) {
+  .content {
+    margin: 20px 30px;
+  }
+}
+
+@media screen and (max-width: 599px) {
+  .content {
+    margin: 8px 12px;
+  }
+  .api-table-containter {
+    display: none;
+  }
+}

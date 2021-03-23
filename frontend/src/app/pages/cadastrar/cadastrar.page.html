@@ -1,0 +1,270 @@
+<ion-content>
+  <div id="fundo">
+    <div id="cabecalho">
+      <p>cadastrar</p>
+    </div>
+    <div id="formularioCadastrar">
+      <form (ngSubmit)="onSubmit()" [formGroup]="cadastro">
+        <ion-grid>
+          <ion-row>
+            <ion-col size="12" size-md>
+              <ion-label id="labelNome">Nome: <span>*</span></ion-label>
+              <ion-input
+                type="text"
+                placeholder=""
+                id="inputNome"
+                name="inputNome"
+                formControlName="inputNome"
+              ></ion-input>
+              <div
+                *ngIf="cadastro.get('inputNome').invalid && (cadastro.get('inputNome').dirty || cadastro.get('inputNome').touched)"
+              >
+                <small *ngIf="cadastro.get('inputNome').errors?.required">
+                  <ion-text color="danger">
+                    Por favor preencha este campo
+                  </ion-text>
+                </small>
+                <small *ngIf="cadastro.get('inputNome').errors?.minlength">
+                  <ion-text color="danger"> No mínimo 5 caracteres </ion-text>
+                </small>
+              </div>
+            </ion-col>
+            <ion-col size="12" size-md>
+              <ion-label id="labelSobreNome"
+                >Sobrenome: <span>*</span></ion-label
+              >
+              <ion-input
+                type="text"
+                placeholder=""
+                id="inputSobreNome"
+                name="inputSobreNome"
+                formControlName="inputSobreNome"
+              ></ion-input>
+              <div
+                *ngIf="cadastro.get('inputSobreNome').invalid && cadastro.get('inputSobreNome').dirty || cadastro.get('inputSobreNome').touched"
+              >
+                <small *ngIf="cadastro.get('inputSobreNome').errors?.required">
+                  <ion-text color="danger">
+                    Por favor preencha este campo
+                  </ion-text>
+                </small>
+                <small *ngIf="cadastro.get('inputSobreNome').errors?.minlength">
+                  <ion-text color="danger"> No mínimo 5 caracteres </ion-text>
+                </small>
+              </div>
+            </ion-col>
+            <ion-col size="12" size-md>
+              <ion-label id="labelUsuario">Usuário: <span>*</span></ion-label>
+              <ion-input
+                type="text"
+                placeholder=""
+                id="inputUsuario"
+                name="inputUsuario"
+                formControlName="inputUsuario"
+              ></ion-input>
+              <div
+                *ngIf="cadastro.get('inputUsuario').invalid && (cadastro.get('inputUsuario').dirty || cadastro.get('inputUsuario').touched)"
+              >
+                <small *ngIf="cadastro.get('inputUsuario').errors?.required">
+                  <ion-text color="danger">
+                    Por favor preencha este campo
+                  </ion-text>
+                </small>
+                <small *ngIf="cadastro.get('inputUsuario').errors?.minlength">
+                  <ion-text color="danger"> No mínimo 5 caracteres </ion-text>
+                </small>
+              </div>
+            </ion-col>
+            <ion-col size="12" size-md>
+              <ion-label id="labelDataNascimento"
+                >Data de Nascimento: <span>*</span></ion-label
+              >
+              <ion-datetime
+                id="inputDataNascimento"
+                name="inputDataNascimento"
+                displayFormat="DD/MM/YY"
+                formControlName="inputDataNascimento"
+              ></ion-datetime>
+              <div
+                *ngIf="cadastro.get('inputDataNascimento').invalid && cadastro.get('inputDataNascimento').dirty || cadastro.get('inputDataNascimento').touched"
+              >
+                <small
+                  *ngIf="cadastro.get('inputDataNascimento').errors?.required"
+                >
+                  <ion-text color="danger">
+                    Por favor selecione uma data
+                  </ion-text>
+                </small>
+              </div>
+            </ion-col>
+            <ion-col size="12" size-md>
+              <ion-label id="labelCpf">Cpf: <span>*</span></ion-label>
+              <ion-input
+                type="text"
+                placeholder=""
+                id="inputCpf"
+                name="inputCpf"
+                formControlName="inputCpf"
+                [brmasker]="{mask: '999.999.999-12'}"
+                maxLength="14"
+              ></ion-input>
+              <div
+                *ngIf="cadastro.get('inputCpf').invalid && cadastro.get('inputCpf').dirty || cadastro.get('inputCpf').touched"
+              >
+                <small *ngIf="cadastro.get('inputCpf').errors?.required">
+                  <ion-text color="danger">
+                    Por favor preencha este campo
+                  </ion-text>
+                </small>
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="6" size-md
+              ><ion-label>Estado: <span>*</span></ion-label>
+              <ion-select
+                id="selectEstado"
+                formControlName="selectEstado"
+                (ionChange)="getMunicipios(cadastro.get('selectEstado').value)"
+              >
+                <ion-select-option
+                  *ngFor="let estado of estados"
+                  value="{{estado.id}}"
+                  >{{estado.nome}}</ion-select-option
+                >
+              </ion-select>
+              <div
+                *ngIf="cadastro.get('selectEstado').invalid && cadastro.get('selectEstado').dirty || cadastro.get('selectEstado').touched"
+              >
+                <small *ngIf="cadastro.get('selectEstado').errors?.required">
+                  <ion-text color="danger">
+                    Por favor selecione um estado
+                  </ion-text>
+                </small>
+              </div></ion-col
+            >
+            <ion-col size="6" size-md
+              ><ion-label id="labelCidade">Cidade: <span>*</span></ion-label>
+              <ion-select
+                type="text"
+                placeholder=""
+                id="inputCidade"
+                name="inputCidade"
+                formControlName="inputCidade"
+
+              >
+                <ion-select-option *ngFor="let municipio of municipios" value="{{municipio.id}}">{{municipio.nome}}</ion-select-option>
+              </ion-select>
+              <div
+                *ngIf="cadastro.get('inputCidade').invalid && cadastro.get('inputCidade').dirty || cadastro.get('inputCidade').touched"
+              >
+                <small *ngIf="cadastro.get('inputCidade').errors?.required">
+                  <ion-text color="danger">
+                    Por favor preencha este campo
+                  </ion-text>
+                </small>
+              </div></ion-col
+            >
+            <ion-col size="12" size-md>
+              <ion-label id="labelEmail">Email: <span>*</span></ion-label>
+              <ion-input
+                type="text"
+                placeholder=""
+                id="inputEmail"
+                name="inputEmail"
+                formControlName="inputEmail"
+              ></ion-input>
+              <div
+                *ngIf="cadastro.get('inputEmail').invalid && cadastro.get('inputEmail').dirty || cadastro.get('inputEmail').touched"
+              >
+                <small *ngIf="cadastro.get('inputEmail').errors?.required">
+                  <ion-text color="danger">
+                    Por favor preencha este campo
+                  </ion-text>
+                </small>
+                <small *ngIf="cadastro.get('inputEmail').errors?.email">
+                  <ion-text color="danger"> Preencha um email valido </ion-text>
+                </small>
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="12" size-md>
+              <ion-label id="labelSenha">Senha: <span>*</span></ion-label>
+              <ion-input
+                type="password"
+                placeholder=""
+                id="inputSenha"
+                name="inputSenha"
+                formControlName="inputSenha"
+              ></ion-input>
+              <div
+                *ngIf="cadastro.get('inputSenha').invalid && cadastro.get('inputSenha').dirty || cadastro.get('inputSenha').touched"
+              >
+                <small *ngIf="cadastro.get('inputSenha').errors?.required">
+                  <ion-text color="danger">
+                    Por favor preencha este campo
+                  </ion-text>
+                </small>
+                <small *ngIf="cadastro.get('inputSenha').errors?.minlength">
+                  <ion-text color="danger"> No mínimo 5 caracteres </ion-text>
+                </small>
+              </div>
+            </ion-col>
+            <ion-col size="12" size-md>
+              <ion-label id="labelConfirmarSenha"
+                >Confirmar Senha: <span>*</span></ion-label
+              >
+              <ion-input
+                type="password"
+                placeholder=""
+                id="inputConfirmarSenha"
+                name="inputConfirmarSenha"
+                formControlName="inputConfirmarSenha"
+              ></ion-input>
+              <div
+                *ngIf="cadastro.get('inputConfirmarSenha').invalid && cadastro.get('inputConfirmarSenha').dirty || cadastro.get('inputConfirmarSenha').touched"
+              >
+                <small
+                  *ngIf="cadastro.get('inputConfirmarSenha').errors?.required"
+                >
+                  <ion-text color="danger">
+                    Por favor preencha este campo
+                  </ion-text>
+                </small>
+                <small
+                  *ngIf="cadastro.get('inputConfirmarSenha').errors?.minlength"
+                >
+                  <ion-text color="danger"> No mínimo 5 caracteres </ion-text>
+                </small>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <div id="termosUso">
+          <ion-checkbox
+            (click)="onClick()"
+            value="1"
+            id="inputTermosUso"
+            formControlName="inputTermosUso"
+          ></ion-checkbox>
+          <ion-label id="labelTermosUso"
+            >Eu aceito os <span>termos de uso</span> e
+            <span>política de privacidade</span></ion-label
+          >
+        </div>
+        <ion-button
+          id="btnCriarConta"
+          expand="block"
+          fill="clear"
+          shape="round"
+          type="submit"
+          [disabled]="!cadastro.valid"
+        >
+          criar conta
+        </ion-button>
+        <div class="input" id="textLogin">ou <span>faça login</span></div>
+      </form>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,189 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+* {
+  font-family: Roboto;
+}
+
+#fundo {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #f9f9f9;
+}
+
+#icone {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+
+  height: max-content;
+  width: max-content;
+}
+
+#formularioLogin {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3%;
+
+  height: max-content;
+  width: 90%;
+
+  // background-color: rebeccapurple;
+}
+
+.input {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  height: max-content;
+  width: max-content;
+}
+
+#labelEmail {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  width: max-content;
+  height: max-content;
+  // left: 34px;
+  // top: 15px;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+
+  color: #000000;
+}
+
+#inputEmail {
+  width: 297px;
+  height: 30px;
+  // left: 32px;
+  // top: 15px;
+
+  background: #e3e0e0;
+}
+
+#labelSenha {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  width: max-content;
+  height: max-content;
+  // margin-left: 14%;
+  top: 16px;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+
+  color: #000000;
+}
+
+#inputSenha {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  width: 297px;
+  height: 30px;
+  // left: 32px;
+  top: 15px;
+
+  background: #e3e0e0;
+}
+
+#textEsqueceuSenha {
+  position: relative;
+  // left: 43%;
+  margin-top: 20px;
+  margin-left: 59%;
+
+  font-size: 11px;
+  line-height: 13px;
+  color: #f91919;
+  text-transform: uppercase;
+
+  cursor: pointer;
+}
+
+#lembrarSenha {
+  position: relative;
+  margin-right: auto;
+  margin-left: auto;
+  height: max-content;
+  width: 297px;
+}
+
+#labelLembrarSenha {
+  position: absolute;
+  height: max-content;
+  width: max-content;
+  margin-top: 3px;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+
+  color: #000000;
+}
+
+#inputLembrarSenha {
+  margin-right: 3px;
+}
+
+#btnEntrar {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  width: 176px;
+  height: 37px;
+  // left: 95px;
+  top: 5px;
+
+  background: #f91919;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 19px;
+  color: #ffffff;
+}
+
+#textCadastrese {
+  top: 15px;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 13px;
+
+  span {
+    font-weight: bold;
+    color: #f91919;
+    cursor: pointer;
+  }
+}
+
+#pularEtapa {
+  top: 45px;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 13px;
+
+  color: #000000;
+
+  cursor: pointer;
+}

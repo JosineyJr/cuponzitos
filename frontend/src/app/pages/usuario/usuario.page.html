@@ -1,0 +1,508 @@
+<ion-content>
+  <div id="fundo">
+    <div id="cabecalho">
+      <img
+        src="../../../assets/menu.jpg"
+        width="50"
+        height="50"
+        alt=""
+        id="iconeMenu"
+        (click)="hideMenu(sideMenu)"
+      />
+    </div>
+    <div id="sideMenu" #sideMenu>
+      <div id="iconeUsuario">
+        <img src="../../../assets/user.png" width="128" height="128" alt="" />
+      </div>
+      <p id="bemVindo" *ngIf="login">
+        Bem vindo(a), <span>{{ login.username }}</span>
+      </p>
+      <p id="bemVindo" *ngIf="!login">Bem vindo(a), <span>Usuário!</span></p>
+      <ul id="opcoesSideMenu">
+        <li
+          class="item"
+          *ngIf="login"
+          [routerLink]="['/usuario/']"
+          routerLinkActive="router-link-active"
+        >
+          <svg
+            class="seta"
+            width="10"
+            height="16"
+            viewBox="0 0 10 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M0.829505 0.454505C1.26884 0.015165 1.98116 0.015165 2.4205 0.454505L9.1705 7.2045C9.60983 7.64384 9.60983 8.35616 9.1705 8.7955L2.4205 15.5455C1.98116 15.9848 1.26884 15.9848 0.829505 15.5455C0.390165 15.1062 0.390165 14.3938 0.829505 13.9545L6.78401 8L0.829505 2.0455C0.390165 1.60616 0.390165 0.893845 0.829505 0.454505Z"
+              fill="black"
+            />
+          </svg>
+          <p>Meu perfil</p>
+        </li>
+        <li
+          class="item"
+          *ngIf="!login"
+          (click)="exibirMensagem('Usuário nao autenticado!')"
+          [routerLink]="['/']"
+          routerLinkActive="router-link-active"
+        >
+          <svg
+            class="seta"
+            width="10"
+            height="16"
+            viewBox="0 0 10 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M0.829505 0.454505C1.26884 0.015165 1.98116 0.015165 2.4205 0.454505L9.1705 7.2045C9.60983 7.64384 9.60983 8.35616 9.1705 8.7955L2.4205 15.5455C1.98116 15.9848 1.26884 15.9848 0.829505 15.5455C0.390165 15.1062 0.390165 14.3938 0.829505 13.9545L6.78401 8L0.829505 2.0455C0.390165 1.60616 0.390165 0.893845 0.829505 0.454505Z"
+              fill="black"
+            />
+          </svg>
+          <p>Fazer login</p>
+        </li>
+        <li
+          class="item"
+          [routerLink]="['/usuario/desejos']"
+          routerLinkActive="router-link-active"
+        >
+          <svg
+            class="seta"
+            width="10"
+            height="16"
+            viewBox="0 0 10 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M0.829505 0.454505C1.26884 0.015165 1.98116 0.015165 2.4205 0.454505L9.1705 7.2045C9.60983 7.64384 9.60983 8.35616 9.1705 8.7955L2.4205 15.5455C1.98116 15.9848 1.26884 15.9848 0.829505 15.5455C0.390165 15.1062 0.390165 14.3938 0.829505 13.9545L6.78401 8L0.829505 2.0455C0.390165 1.60616 0.390165 0.893845 0.829505 0.454505Z"
+              fill="black"
+            />
+          </svg>
+          <p>Perfil de desejos</p>
+        </li>
+        <li
+          class="item"
+          [routerLink]="['/cuponzitos/personalizados']"
+          routerLinkActive="router-link-active"
+        >
+          <svg
+            class="seta"
+            width="10"
+            height="16"
+            viewBox="0 0 10 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M0.829505 0.454505C1.26884 0.015165 1.98116 0.015165 2.4205 0.454505L9.1705 7.2045C9.60983 7.64384 9.60983 8.35616 9.1705 8.7955L2.4205 15.5455C1.98116 15.9848 1.26884 15.9848 0.829505 15.5455C0.390165 15.1062 0.390165 14.3938 0.829505 13.9545L6.78401 8L0.829505 2.0455C0.390165 1.60616 0.390165 0.893845 0.829505 0.454505Z"
+              fill="black"
+            />
+          </svg>
+          <p>Cupons personalizados</p>
+        </li>
+      </ul>
+    </div>
+    <div id="perfil">
+      <form (ngSubmit)="onSubmit()" [formGroup]="usuarioForm">
+        <svg
+          id="excluir"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          (click)="excluir()"
+        >
+          <path
+            d="M20.25 4.5H15.75V3.375C15.75 2.87772 15.5525 2.40081 15.2008 2.04917C14.8492 1.69754 14.3723 1.5 13.875 1.5H10.125C9.62772 1.5 9.15081 1.69754 8.79917 2.04917C8.44754 2.40081 8.25 2.87772 8.25 3.375V4.5H3.75C3.55109 4.5 3.36032 4.57902 3.21967 4.71967C3.07902 4.86032 3 5.05109 3 5.25C3 5.44891 3.07902 5.63968 3.21967 5.78033C3.36032 5.92098 3.55109 6 3.75 6H4.54688L5.4375 20.2931C5.50406 21.5517 6.46875 22.5 7.6875 22.5H16.3125C17.5373 22.5 18.4828 21.5728 18.5625 20.2969L19.4531 6H20.25C20.4489 6 20.6397 5.92098 20.7803 5.78033C20.921 5.63968 21 5.44891 21 5.25C21 5.05109 20.921 4.86032 20.7803 4.71967C20.6397 4.57902 20.4489 4.5 20.25 4.5ZM9.02672 19.5H9C8.80563 19.5001 8.61881 19.4248 8.4789 19.2899C8.33899 19.1549 8.25692 18.971 8.25 18.7767L7.875 8.27672C7.86791 8.07781 7.94014 7.88423 8.07578 7.73856C8.21142 7.5929 8.39937 7.50709 8.59828 7.5C8.79719 7.49291 8.99077 7.56514 9.13644 7.70078C9.2821 7.83642 9.36791 8.02437 9.375 8.22328L9.75 18.7233C9.75357 18.8218 9.73769 18.92 9.70326 19.0124C9.66884 19.1048 9.61654 19.1894 9.54937 19.2616C9.48219 19.3337 9.40146 19.3919 9.31178 19.4328C9.2221 19.4737 9.12523 19.4966 9.02672 19.5ZM12.75 18.75C12.75 18.9489 12.671 19.1397 12.5303 19.2803C12.3897 19.421 12.1989 19.5 12 19.5C11.8011 19.5 11.6103 19.421 11.4697 19.2803C11.329 19.1397 11.25 18.9489 11.25 18.75V8.25C11.25 8.05109 11.329 7.86032 11.4697 7.71967C11.6103 7.57902 11.8011 7.5 12 7.5C12.1989 7.5 12.3897 7.57902 12.5303 7.71967C12.671 7.86032 12.75 8.05109 12.75 8.25V18.75ZM14.25 4.5H9.75V3.375C9.74943 3.3256 9.75875 3.27658 9.77739 3.23083C9.79604 3.18507 9.82364 3.14351 9.85857 3.10858C9.89351 3.07364 9.93507 3.04604 9.98083 3.02739C10.0266 3.00875 10.0756 2.99943 10.125 3H13.875C13.9244 2.99943 13.9734 3.00875 14.0192 3.02739C14.0649 3.04604 14.1065 3.07364 14.1414 3.10858C14.1764 3.14351 14.204 3.18507 14.2226 3.23083C14.2413 3.27658 14.2506 3.3256 14.25 3.375V4.5ZM15.75 18.7767C15.7431 18.971 15.661 19.1549 15.5211 19.2899C15.3812 19.4248 15.1944 19.5001 15 19.5H14.9728C14.8743 19.4965 14.7775 19.4736 14.6879 19.4327C14.5983 19.3917 14.5176 19.3335 14.4505 19.2614C14.3833 19.1893 14.3311 19.1046 14.2967 19.0123C14.2623 18.92 14.2464 18.8217 14.25 18.7233L14.625 8.22328C14.6285 8.12479 14.6514 8.02795 14.6923 7.9383C14.7332 7.84865 14.7914 7.76794 14.8636 7.70078C14.9357 7.63361 15.0203 7.58132 15.1127 7.54687C15.205 7.51242 15.3032 7.49649 15.4017 7.5C15.5002 7.50351 15.597 7.52638 15.6867 7.56732C15.7763 7.60825 15.8571 7.66644 15.9242 7.73856C15.9914 7.81069 16.0437 7.89534 16.0781 7.98767C16.1126 8.08001 16.1285 8.17823 16.125 8.27672L15.75 18.7767Z"
+            fill="#888888"
+          />
+        </svg>
+        <button type="reset">
+          <svg
+            id="cancelar"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M13.5909 11.9999L18.0441 7.54675C18.2554 7.33578 18.3743 7.04949 18.3745 6.75087C18.3748 6.45225 18.2564 6.16575 18.0455 5.95441C17.8345 5.74306 17.5482 5.62418 17.2496 5.62392C16.951 5.62366 16.6645 5.74203 16.4531 5.953L12 10.4061L7.54687 5.953C7.33553 5.74166 7.04888 5.62292 6.75 5.62292C6.45111 5.62292 6.16447 5.74166 5.95312 5.953C5.74178 6.16435 5.62305 6.45099 5.62305 6.74988C5.62305 7.04876 5.74178 7.33541 5.95312 7.54675L10.4062 11.9999L5.95312 16.453C5.74178 16.6643 5.62305 16.951 5.62305 17.2499C5.62305 17.5488 5.74178 17.8354 5.95312 18.0468C6.16447 18.2581 6.45111 18.3768 6.75 18.3768C7.04888 18.3768 7.33553 18.2581 7.54687 18.0468L12 13.5936L16.4531 18.0468C16.6645 18.2581 16.9511 18.3768 17.25 18.3768C17.5489 18.3768 17.8355 18.2581 18.0469 18.0468C18.2582 17.8354 18.3769 17.5488 18.3769 17.2499C18.3769 16.951 18.2582 16.6643 18.0469 16.453L13.5909 11.9999Z"
+              fill="#F91919"
+            />
+          </svg>
+        </button>
+        <button type="submit">
+          <svg
+            id="concluir"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M19.9939 5.43536C20.3056 5.70813 20.3372 6.18195 20.0644 6.49368L9.56443 18.4937C9.42774 18.6499 9.23242 18.7425 9.02496 18.7494C8.8175 18.7563 8.61645 18.6769 8.46967 18.5301L3.96967 14.0301C3.67678 13.7372 3.67678 13.2624 3.96967 12.9695C4.26256 12.6766 4.73744 12.6766 5.03033 12.9695L8.96347 16.9026L18.9356 5.50592C19.2083 5.19419 19.6822 5.1626 19.9939 5.43536Z"
+              fill="#28DA44"
+            />
+          </svg>
+        </button>
+
+        <div id="fotoUsuario">
+          <img src="../../../assets/user.png" width="128" height="128" alt="" />
+          <svg
+            width="21"
+            height="17"
+            viewBox="0 0 21 17"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            id="foto"
+          >
+            <path
+              d="M18.75 3H15.9844C15.8438 3 15.6694 2.90906 15.5334 2.76562L14.3175 0.846562C14.2983 0.816106 14.2768 0.78712 14.2533 0.759844C13.8333 0.27 13.2656 0 12.6562 0H8.34375C7.73438 0 7.16672 0.27 6.74672 0.759844C6.7232 0.78712 6.70173 0.816106 6.6825 0.846562L5.46656 2.76844C5.3625 2.88187 5.21625 3.00281 5.0625 3.00281V2.62781C5.0625 2.4289 4.98348 2.23813 4.84283 2.09748C4.70218 1.95683 4.51141 1.87781 4.3125 1.87781H3.1875C2.98859 1.87781 2.79782 1.95683 2.65717 2.09748C2.51652 2.23813 2.4375 2.4289 2.4375 2.62781V3.00281H2.25C1.65345 3.00343 1.08152 3.24069 0.659695 3.66251C0.237873 4.08433 0.000620434 4.65627 0 5.25281V14.25C0.000620434 14.8465 0.237873 15.4185 0.659695 15.8403C1.08152 16.2621 1.65345 16.4994 2.25 16.5H18.75C19.3465 16.4994 19.9185 16.2621 20.3403 15.8403C20.7621 15.4185 20.9994 14.8465 21 14.25V5.25C20.9994 4.65345 20.7621 4.08152 20.3403 3.65969C19.9185 3.23787 19.3465 3.00062 18.75 3ZM10.5 13.5C9.60998 13.5 8.73995 13.2361 7.99993 12.7416C7.25991 12.2471 6.68314 11.5443 6.34254 10.7221C6.00195 9.89981 5.91283 8.99501 6.08647 8.12209C6.2601 7.24918 6.68868 6.44736 7.31802 5.81802C7.94736 5.18868 8.74918 4.7601 9.62209 4.58647C10.495 4.41283 11.3998 4.50195 12.2221 4.84254C13.0443 5.18314 13.7471 5.75991 14.2416 6.49993C14.7361 7.23995 15 8.10998 15 9C14.9986 10.1931 14.5241 11.3369 13.6805 12.1805C12.8369 13.0241 11.6931 13.4986 10.5 13.5Z"
+              fill="black"
+            />
+          </svg>
+        </div>
+        <div id="dados">
+          <ion-grid fixed>
+            <ion-row>
+              <ion-col size="12" sizeMd
+                ><ion-item color="#">
+                  <ion-label position="stacked">Nome</ion-label>
+                  <ion-input
+                    id="nome"
+                    name="nome"
+                    formControlName="inputNome"
+                  ></ion-input>
+                  <div
+                    *ngIf="usuarioForm.get('inputNome').invalid && (usuarioForm.get('inputNome').dirty || usuarioForm.get('inputNome').touched)"
+                  >
+                    <small
+                      *ngIf="usuarioForm.get('inputNome').errors?.required"
+                    >
+                      <ion-text color="danger">
+                        Por favor preencha este campo
+                      </ion-text>
+                    </small>
+                    <small
+                      *ngIf="usuarioForm.get('inputNome').errors?.minlength"
+                    >
+                      <ion-text color="danger">
+                        No mínimo 5 caracteres
+                      </ion-text>
+                    </small>
+                  </div>
+                </ion-item>
+              </ion-col>
+              <ion-col size="12" sizeMd>
+                <ion-item color="#">
+                  <ion-label position="stacked">Sobrenome</ion-label>
+                  <ion-input
+                    type="text"
+                    placeholder=""
+                    id="sobrenome"
+                    name="sobrenome"
+                    formControlName="inputSobreNome"
+                  ></ion-input>
+                  <div
+                    *ngIf="usuarioForm.get('inputSobreNome').invalid && usuarioForm.get('inputSobreNome').dirty || usuarioForm.get('inputSobreNome').touched"
+                  >
+                    <small
+                      *ngIf="usuarioForm.get('inputSobreNome').errors?.required"
+                    >
+                      <ion-text color="danger">
+                        Por favor preencha este campo
+                      </ion-text>
+                    </small>
+                    <small
+                      *ngIf="usuarioForm.get('inputSobreNome').errors?.minlength"
+                    >
+                      <ion-text color="danger">
+                        No mínimo 5 caracteres
+                      </ion-text>
+                    </small>
+                  </div>
+                </ion-item>
+              </ion-col>
+              <ion-col size="12" sizeMd>
+                <ion-item color="#">
+                  <ion-label position="stacked">Data de Nascimento</ion-label>
+                  <ion-datetime
+                    display-format="DD/MM/YY"
+                    name="dtNasc"
+                    id="dtNasc"
+                    formControlName="inputDataNascimento"
+                  ></ion-datetime>
+                  <div
+                    *ngIf="usuarioForm.get('inputDataNascimento').invalid && usuarioForm.get('inputDataNascimento').dirty || usuarioForm.get('inputDataNascimento').touched"
+                  >
+                    <small
+                      *ngIf="usuarioForm.get('inputDataNascimento').errors?.required"
+                    >
+                      <ion-text color="danger">
+                        Por favor selecione uma data
+                      </ion-text>
+                    </small>
+                  </div>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="12" sizeMd>
+                <ion-item color="#">
+                  <ion-label position="stacked">CPF</ion-label>
+                  <ion-input
+                    id="cpf"
+                    name="cpf"
+                    formControlName="inputCpf"
+                    [brmasker]="{mask: '999.999.999-12'}"
+                    maxLength="14"
+                  ></ion-input>
+                  <div
+                    *ngIf="usuarioForm.get('inputCpf').invalid && usuarioForm.get('inputCpf').dirty || usuarioForm.get('inputCpf').touched"
+                  >
+                    <small *ngIf="usuarioForm.get('inputCpf').errors?.required">
+                      <ion-text color="danger">
+                        Por favor preencha este campo
+                      </ion-text>
+                    </small>
+                    <small
+                      *ngIf="usuarioForm.get('inputCpf').errors?.minlength"
+                    >
+                      <ion-text color="danger">
+                        Por favor preencha este campo
+                      </ion-text>
+                    </small>
+                  </div>
+                </ion-item>
+              </ion-col>
+              <ion-col size="12" sizeMd>
+                <ion-item color="#">
+                  <ion-label position="stacked">Estado</ion-label>
+                  <ion-select
+                    placeholder="Selecione um estado"
+                    formControlName="selectEstado"
+                    (ionChange)="getMunicipios(usuarioForm.get('selectEstado').value)"
+                  >
+                    <ion-select-option
+                      *ngFor="let estado of estados"
+                      value="{{estado.id}}"
+                      >{{estado.nome}}</ion-select-option
+                    >
+                  </ion-select>
+                  <div
+                    *ngIf="usuarioForm.get('selectEstado').invalid && usuarioForm.get('selectEstado').dirty || usuarioForm.get('selectEstado').touched"
+                  >
+                    <small
+                      *ngIf="usuarioForm.get('selectEstado').errors?.required"
+                    >
+                      <ion-text color="danger">
+                        Por favor selecione um estado
+                      </ion-text>
+                    </small>
+                  </div>
+                </ion-item>
+              </ion-col>
+              <ion-col size="12" sizeMd>
+                <ion-item color="#">
+                  <ion-label position="stacked">Cidade</ion-label>
+                  <ion-select
+                    type="text"
+                    placeholder=""
+                    id="cidade"
+                    name="cidade"
+                    formControlName="inputCidade"
+                  >
+                    <ion-select-option
+                      *ngFor="let municipio of municipios"
+                      value="{{municipio.id}}"
+                      >{{municipio.nome}}</ion-select-option
+                    >
+                  </ion-select>
+                  <div
+                    *ngIf="usuarioForm.get('inputCidade').invalid && usuarioForm.get('inputCidade').dirty || usuarioForm.get('inputCidade').touched"
+                  >
+                    <small
+                      *ngIf="usuarioForm.get('inputCidade').errors?.required"
+                    >
+                      <ion-text color="danger">
+                        Por favor preencha este campo
+                      </ion-text>
+                    </small>
+                  </div>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="12" sizeMd>
+                <ion-item color="#">
+                  <ion-label position="stacked">Email</ion-label>
+                  <ion-input
+                    id="email"
+                    name="email"
+                    formControlName="inputEmail"
+                  ></ion-input>
+                  <div
+                    *ngIf="usuarioForm.get('inputEmail').invalid && usuarioForm.get('inputEmail').dirty || usuarioForm.get('inputEmail').touched"
+                  >
+                    <small
+                      *ngIf="usuarioForm.get('inputEmail').errors?.required"
+                    >
+                      <ion-text color="danger">
+                        Por favor preencha este campo
+                      </ion-text>
+                    </small>
+                    <small *ngIf="usuarioForm.get('inputEmail').errors?.email">
+                      <ion-text color="danger">
+                        Preencha um email valido
+                      </ion-text>
+                    </small>
+                  </div>
+                </ion-item>
+              </ion-col>
+              <ion-col size="12" sizeMd>
+                <ion-item color="#">
+                  <ion-label position="stacked">Senha</ion-label>
+                  <ion-input
+                    id="senha"
+                    type="password"
+                    name="senha"
+                    formControlName="inputSenha"
+                  ></ion-input>
+                  <div
+                    *ngIf="usuarioForm.get('inputSenha').invalid && usuarioForm.get('inputSenha').dirty || usuarioForm.get('inputSenha').touched"
+                  >
+                    <small
+                      *ngIf="usuarioForm.get('inputSenha').errors?.required"
+                    >
+                      <ion-text color="danger">
+                        Por favor preencha este campo
+                      </ion-text>
+                    </small>
+                    <small
+                      *ngIf="usuarioForm.get('inputSenha').errors?.minlength"
+                    >
+                      <ion-text color="danger">
+                        No mínimo 5 caracteres
+                      </ion-text>
+                    </small>
+                  </div>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+      </form>
+    </div>
+    <div id="ajusteTecnico"></div>
+    <footer id="abas">
+      <div
+        id="iconePerfilUsuario"
+        class="active"
+        [routerLink]="['/usuario']"
+        routerLinkActive="router-link-active"
+      >
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M15.5926 3.02719C14.6804 2.04234 13.4063 1.5 12.0001 1.5C10.5863 1.5 9.30802 2.03906 8.40005 3.01781C7.48223 4.00734 7.03505 5.35219 7.14005 6.80438C7.34817 9.66938 9.52833 12 12.0001 12C14.4718 12 16.6482 9.66984 16.8596 6.80531C16.966 5.36625 16.516 4.02422 15.5926 3.02719Z"
+            fill="white"
+          />
+          <path
+            d="M20.25 22.5H3.75002C3.53405 22.5028 3.32017 22.4574 3.12394 22.3672C2.92772 22.2769 2.75407 22.1441 2.61565 21.9783C2.31096 21.6141 2.18815 21.1167 2.27909 20.6137C2.67471 18.4191 3.9094 16.5755 5.85002 15.2812C7.57409 14.1323 9.75799 13.5 12 13.5C14.2421 13.5 16.426 14.1328 18.15 15.2812C20.0906 16.575 21.3253 18.4186 21.721 20.6133C21.8119 21.1162 21.6891 21.6136 21.3844 21.9778C21.246 22.1437 21.0724 22.2766 20.8762 22.367C20.6799 22.4573 20.466 22.5028 20.25 22.5Z"
+            fill="white"
+          />
+        </svg>
+        <p class="textIcone">Meu perfil</p>
+      </div>
+      <div
+        id="iconeMeusDesejos"
+        [routerLink]="['/usuario/desejos']"
+        routerLinkActive="router-link-active"
+      >
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M12 21C11.699 20.9996 11.405 20.9086 11.1563 20.7389C7.47238 18.2381 5.87722 16.5234 4.99738 15.4514C3.12238 13.1663 2.22472 10.8202 2.25003 8.27953C2.27956 5.36813 4.61534 3 7.45691 3C9.52316 3 10.9543 4.16391 11.7877 5.13328C11.8141 5.16368 11.8467 5.18805 11.8833 5.20476C11.92 5.22146 11.9598 5.23011 12 5.23011C12.0403 5.23011 12.0801 5.22146 12.1167 5.20476C12.1534 5.18805 12.186 5.16368 12.2124 5.13328C13.0458 4.16297 14.4769 3 16.5432 3C19.3847 3 21.7205 5.36812 21.75 8.28C21.7753 10.8211 20.8768 13.1672 19.0027 15.4519C18.1228 16.5239 16.5277 18.2386 12.8438 20.7394C12.5951 20.9089 12.3011 20.9998 12 21Z"
+            fill="white"
+          />
+        </svg>
+        <p class="textIcone">Perfil de desejos</p>
+      </div>
+      <div
+        id="iconeAbaCupom"
+        [routerLink]="['/cuponzitos/personalizados']"
+        routerLinkActive="router-link-active"
+      >
+        <p id="textIconeAbaCupom" class="textIcone">Cupons personalizados</p>
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M22.9772 8.50315L20.9086 6.43456C20.7417 6.26992 20.5192 6.17378 20.2849 6.1651C20.0506 6.15642 19.8216 6.23584 19.643 6.38769C19.3672 6.62241 19.0134 6.74496 18.6515 6.73107C18.2896 6.71718 17.9462 6.56785 17.6892 6.31269C17.4342 6.05576 17.285 5.71241 17.2711 5.35066C17.2572 4.98891 17.3797 4.63513 17.6142 4.3594C17.7661 4.18079 17.8455 3.95176 17.8368 3.71748C17.8282 3.4832 17.732 3.26067 17.5674 3.09378L15.4969 1.02284C15.3219 0.848204 15.0848 0.750122 14.8376 0.750122C14.5904 0.750122 14.3533 0.848204 14.1783 1.02284L10.8807 4.32003C10.6771 4.52435 10.5235 4.77303 10.4321 5.04659C10.4143 5.09919 10.3846 5.14697 10.3453 5.18624C10.306 5.2255 10.2582 5.25519 10.2057 5.273C9.93198 5.36445 9.68327 5.51817 9.47909 5.72206L1.02284 14.1783C0.848204 14.3533 0.750122 14.5904 0.750122 14.8376C0.750122 15.0848 0.848204 15.3219 1.02284 15.4969L3.09378 17.5655C3.26067 17.7301 3.4832 17.8263 3.71748 17.835C3.95176 17.8436 4.18079 17.7642 4.3594 17.6124C4.63451 17.3758 4.98887 17.2518 5.35147 17.2655C5.71408 17.2791 6.05815 17.4292 6.31473 17.6858C6.57132 17.9424 6.72146 18.2864 6.73507 18.6491C6.74869 19.0117 6.62477 19.366 6.38815 19.6411C6.23631 19.8197 6.15689 20.0488 6.16557 20.283C6.17424 20.5173 6.27038 20.7399 6.43503 20.9067L8.50362 22.9753C8.6786 23.15 8.91571 23.2481 9.16292 23.2481C9.41013 23.2481 9.64724 23.15 9.82222 22.9753L18.2785 14.5191C18.4822 14.315 18.6359 14.0665 18.7275 13.793C18.7453 13.7402 18.775 13.6923 18.8143 13.6529C18.8537 13.6136 18.9016 13.5839 18.9544 13.5661C19.2278 13.4746 19.4763 13.3211 19.6805 13.1175L22.9777 9.81987C23.1517 9.64492 23.2493 9.40817 23.2492 9.16142C23.2491 8.91466 23.1513 8.67799 22.9772 8.50315ZM12.2724 7.11331C12.2027 7.18297 12.12 7.23823 12.029 7.27593C11.938 7.31364 11.8405 7.33304 11.742 7.33304C11.6435 7.33304 11.5459 7.31364 11.4549 7.27593C11.3639 7.23823 11.2812 7.18297 11.2116 7.11331L10.6721 6.57378C10.5348 6.43242 10.4587 6.24274 10.4602 6.04573C10.4617 5.84872 10.5406 5.66021 10.68 5.52093C10.8193 5.38165 11.0079 5.30279 11.2049 5.30139C11.4019 5.3 11.5915 5.37618 11.7328 5.51347L12.2724 6.05253C12.342 6.12218 12.3973 6.20486 12.435 6.29587C12.4727 6.38687 12.4921 6.48441 12.4921 6.58292C12.4921 6.68143 12.4727 6.77897 12.435 6.86997C12.3973 6.96098 12.342 7.04366 12.2724 7.11331ZM14.3349 9.17581C14.1942 9.31636 14.0035 9.39531 13.8047 9.39531C13.6059 9.39531 13.4152 9.31636 13.2746 9.17581L12.7589 8.66019C12.6893 8.59053 12.634 8.50784 12.5963 8.41684C12.5586 8.32584 12.5392 8.2283 12.5392 8.12979C12.5392 8.03129 12.5586 7.93375 12.5963 7.84275C12.634 7.75175 12.6893 7.66906 12.7589 7.5994C12.8996 7.45874 13.0904 7.37971 13.2893 7.37971C13.3878 7.37971 13.4854 7.39911 13.5764 7.43681C13.6674 7.4745 13.7501 7.52975 13.8197 7.5994L14.3353 8.11503C14.4052 8.18467 14.4607 8.26742 14.4986 8.35854C14.5365 8.44966 14.556 8.54735 14.556 8.64603C14.5561 8.7447 14.5366 8.84241 14.4988 8.93356C14.4611 9.02471 14.4057 9.10751 14.3358 9.17722L14.3349 9.17581ZM16.3974 11.2383C16.3277 11.308 16.245 11.3632 16.154 11.4009C16.063 11.4386 15.9655 11.458 15.867 11.458C15.7685 11.458 15.6709 11.4386 15.5799 11.4009C15.4889 11.3632 15.4062 11.308 15.3366 11.2383L14.821 10.7227C14.6837 10.5813 14.6076 10.3916 14.6091 10.1946C14.6106 9.99763 14.6896 9.80911 14.8289 9.66983C14.9682 9.53055 15.1568 9.4517 15.3538 9.4503C15.5508 9.4489 15.7404 9.52508 15.8817 9.66237L16.3974 10.178C16.4675 10.2475 16.5232 10.3302 16.5612 10.4213C16.5993 10.5124 16.619 10.6101 16.6192 10.7088C16.6194 10.8076 16.6002 10.9054 16.5625 10.9966C16.5248 11.0879 16.4695 11.1708 16.3997 11.2407L16.3974 11.2383ZM18.48 13.3261C18.4104 13.3958 18.3277 13.451 18.2367 13.4887C18.1457 13.5264 18.0481 13.5459 17.9496 13.5459C17.8511 13.5459 17.7536 13.5264 17.6626 13.4887C17.5716 13.451 17.4889 13.3958 17.4192 13.3261L16.883 12.7871C16.8119 12.7176 16.7553 12.6347 16.7165 12.5432C16.6776 12.4517 16.6574 12.3534 16.6569 12.254C16.6565 12.1546 16.6758 12.0561 16.7137 11.9642C16.7516 11.8723 16.8074 11.7889 16.8779 11.7188C16.9484 11.6487 17.032 11.5933 17.1241 11.5558C17.2162 11.5183 17.3148 11.4995 17.4142 11.5004C17.5136 11.5014 17.6118 11.5221 17.7031 11.5614C17.7944 11.6006 17.877 11.6576 17.9461 11.7291L18.4828 12.2677C18.5525 12.3374 18.6077 12.4201 18.6454 12.5111C18.683 12.6021 18.7024 12.6997 18.7023 12.7982C18.7023 12.8967 18.6828 12.9942 18.6451 13.0852C18.6074 13.1762 18.5521 13.2589 18.4824 13.3285L18.48 13.3261Z"
+            fill="white"
+          />
+        </svg>
+      </div>
+      <div
+        id="iconeInicio"
+        [routerLink]="['/cuponzitos']"
+        routerLinkActive="router-link-active"
+      >
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M9.5625 11.25H3.1875C2.73995 11.25 2.31072 11.0722 1.99426 10.7557C1.67779 10.4393 1.5 10.0101 1.5 9.5625V3.1875C1.5 2.73995 1.67779 2.31072 1.99426 1.99426C2.31072 1.67779 2.73995 1.5 3.1875 1.5H9.5625C10.0101 1.5 10.4393 1.67779 10.7557 1.99426C11.0722 2.31072 11.25 2.73995 11.25 3.1875V9.5625C11.25 10.0101 11.0722 10.4393 10.7557 10.7557C10.4393 11.0722 10.0101 11.25 9.5625 11.25Z"
+            fill="#ffffff"
+          />
+          <path
+            d="M20.8125 11.25H14.4375C13.9899 11.25 13.5607 11.0722 13.2443 10.7557C12.9278 10.4393 12.75 10.0101 12.75 9.5625V3.1875C12.75 2.73995 12.9278 2.31072 13.2443 1.99426C13.5607 1.67779 13.9899 1.5 14.4375 1.5H20.8125C21.2601 1.5 21.6893 1.67779 22.0057 1.99426C22.3222 2.31072 22.5 2.73995 22.5 3.1875V9.5625C22.5 10.0101 22.3222 10.4393 22.0057 10.7557C21.6893 11.0722 21.2601 11.25 20.8125 11.25Z"
+            fill="#ffffff"
+          />
+          <path
+            d="M9.5625 22.5H3.1875C2.73995 22.5 2.31072 22.3222 1.99426 22.0057C1.67779 21.6893 1.5 21.2601 1.5 20.8125V14.4375C1.5 13.9899 1.67779 13.5607 1.99426 13.2443C2.31072 12.9278 2.73995 12.75 3.1875 12.75H9.5625C10.0101 12.75 10.4393 12.9278 10.7557 13.2443C11.0722 13.5607 11.25 13.9899 11.25 14.4375V20.8125C11.25 21.2601 11.0722 21.6893 10.7557 22.0057C10.4393 22.3222 10.0101 22.5 9.5625 22.5Z"
+            fill="#ffffff"
+          />
+          <path
+            d="M20.8125 22.5H14.4375C13.9899 22.5 13.5607 22.3222 13.2443 22.0057C12.9278 21.6893 12.75 21.2601 12.75 20.8125V14.4375C12.75 13.9899 12.9278 13.5607 13.2443 13.2443C13.5607 12.9278 13.9899 12.75 14.4375 12.75H20.8125C21.2601 12.75 21.6893 12.9278 22.0057 13.2443C22.3222 13.5607 22.5 13.9899 22.5 14.4375V20.8125C22.5 21.2601 22.3222 21.6893 22.0057 22.0057C21.6893 22.3222 21.2601 22.5 20.8125 22.5Z"
+            fill="#ffffff"
+          />
+        </svg>
+        <p id="textIconeInicio" class="textIcone">Início</p>
+      </div>
+    </footer>
+  </div>
+</ion-content>

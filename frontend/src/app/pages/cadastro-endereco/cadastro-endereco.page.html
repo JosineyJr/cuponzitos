@@ -1,0 +1,43 @@
+<ion-content>
+  <div id="fundo">
+    <div id="icone">
+      <img src="../../../assets/icon/favicon.png" alt="" />
+    </div>
+    <div id="formularioEndereco">
+      <form>
+        <div class="input" id="textInsira">
+          Antes de prosseguir, insira os dados abaixo:
+        </div>
+        <div class="input" id="cidadeEstado">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="auto">
+                <ion-label>Cidade: <span>*</span></ion-label>
+                <ion-input type="text" id="inputCidade"></ion-input>
+              </ion-col>
+              <ion-col size="auto">
+                <ion-label>Estado: <span>*</span></ion-label>
+                <ion-select value="peperoni" id="selectEstado">
+                  <ion-select-option value="peperoni"
+                    >Peperoni</ion-select-option
+                  >
+                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                </ion-select>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+        <div id="termosUso">
+          <ion-checkbox id="inputTermosUso"></ion-checkbox>
+          <ion-label id="labelTermosUso">Eu aceito os <span>termos de uso</span> e <span>política de privacidade</span></ion-label>
+        </div>
+        <ion-button id="btnProsseguir" expand="block" fill="clear" shape="round">
+          prosseguir
+        </ion-button>
+        <div class="input" id="textLogin">
+          ou <span>faça login</span>
+        </div>
+      </form>
+    </div>
+  </div>
+</ion-content>

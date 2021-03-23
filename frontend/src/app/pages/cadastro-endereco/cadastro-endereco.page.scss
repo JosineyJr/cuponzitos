@@ -1,0 +1,149 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+* {
+  font-family: Roboto;
+}
+
+#fundo {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #f9f9f9;
+}
+
+#icone {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+
+  height: max-content;
+  width: max-content;
+}
+
+#formularioEndereco {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3%;
+
+  height: max-content;
+  width: 90%;
+
+  // background-color: rebeccapurple;
+}
+
+.input {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  height: max-content;
+  width: max-content;
+}
+
+#textInsira {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+
+  color: #000000;
+}
+
+#cidadeEstado {
+  ion-label {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+
+    color: #000000;
+  }
+  span {
+    color: #f91919;
+  }
+}
+
+#inputCidade {
+  width: 174px;
+  height: 27px;
+  // left: 30px;
+  // top: 408px;
+
+  background: #e3e0e0;
+}
+
+#selectEstado {
+  width: 105px;
+  height: 27px;
+  background: #e3e0e0;
+}
+
+#termosUso {
+  position: relative;
+  margin-right: auto;
+  margin-left: auto;
+  height: max-content;
+  width: 309px;
+  span {
+    color: #f91919;
+  }
+}
+
+#labelTermosUso {
+  position: absolute;
+  height: max-content;
+  width: max-content;
+  margin-top: 3px;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+
+  color: #000000;
+
+  cursor: pointer;
+}
+
+#inputTermosUso {
+  margin-right: 3px;
+}
+
+#btnProsseguir {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  width: 176px;
+  height: 37px;
+  // left: 95px;
+  top: 5px;
+
+  background: #f91919;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 19px;
+  color: #ffffff;
+}
+
+#textLogin {
+  top: 15px;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 13px;
+
+  span {
+    font-weight: bold;
+    color: #f91919;
+    cursor: pointer;
+  }
+}
