@@ -25,7 +25,7 @@ export class PersonalizadosComponent implements OnInit {
   login;
   usuario;
   desejos = [];
-  filtro = [];
+  aux = [];
 
   @ViewChildren('nav', { read: DragScrollComponent })
   ds: DragScrollComponent;
@@ -54,14 +54,16 @@ export class PersonalizadosComponent implements OnInit {
             .then((promo) => {
               this.desejos.push(promo);
               for (const promo in this.desejos) {
+                this.aux = [];
                 for (const cupom in this.desejos[promo].coupons) {
                   if (
-                    parseFloat(this.desejos[promo].coupons[cupom].price) >
+                    parseFloat(this.desejos[promo].coupons[cupom].price) <=
                     this.usuario.desejos.valorMaximo
                   ) {
-                    
+                    this.aux.push(this.desejos[promo].coupons[cupom]);
                   }
                 }
+                this.desejos[promo].coupons = this.aux;
               }
             });
         }
