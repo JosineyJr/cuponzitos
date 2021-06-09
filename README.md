@@ -1,7 +1,5 @@
 # BkCuponzitos
 
-Dupla: Fernanda Souza e Lívia Ferreira.
-
 ## Descrição geral do aplicativo
 
 Será desenvolvido um app de cupons de lanches utilizando a api do Burger King. Ele irá mostrar cupons com as promoções dos 
